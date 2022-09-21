@@ -42,6 +42,15 @@ namespace ModuloAPI.Controllers
                     return NotFound();
 
                 return Ok(contato);
+                //retona o endereço do contato criado
+                //return CreatedAtAction(nameof(ObterPorId), new { id = contato.Id}, contato);
+        }
+
+        [HttpGet("ObterPorNome")]
+        public IActionResult ObterPorNome(string nome)
+        {
+            var contatos = _context.Contatos.Where(x => x.Nome.Contains(nome));
+            return Ok(contatos);
         }
 
         [HttpPut("{id}")]
